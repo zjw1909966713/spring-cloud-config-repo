@@ -1,0 +1,179 @@
+server:
+  port: 4570
+  tomcat:
+    uri-encoding: UTF-8
+
+
+#################################################自定义参数###########################################################################
+serverAddress: http://172.16.1.47:4321/  #邮件部署的地址
+
+forgetPasswordEmailUrl: http://172.16.1.47:9988/code_newPassword.html?resetToken=   #忘记密码点击的链接
+
+
+#################################################自定义参数###########################################################################
+
+
+
+
+
+#-----------------------------------------------------
+spring:
+  profiles:
+    active: 72craftDevBackEnd
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: utf-8
+  jackson:
+    time-zone: GMT+8
+  banner:
+    charset: UTF-8
+  aop:
+    auto: true
+logging:
+  level:
+    com.highrock.mapper:  debug
+  path: /usr/log/72craftuser
+  #file: /usr/log/72craftuser/user.log
+
+token:
+  secret: secret
+  expiration: 604800
+ # expiration: 60   #单位是秒
+
+
+#-----------------------------mybatis-----------------------------
+mybatis:
+  type-aliases-package: com.highrock.model
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  #mapper-locations: com/highrock/mapper/*Mapper.xml
+
+---
+spring:
+  profiles: 72craftDevBackEnd
+  # 驱动配置信息
+  datasource:
+    url: jdbc:mysql://172.16.1.47:3306/72craft?useUnicode=true&characterEncoding=utf8
+    username: highrock
+    password: Tianshi@18
+    #password: TQufFr15+nq3NWyN0LCHySSwAfna2Pj6IqOpZs9N1ZeU+qUSQVi/sZNzufLZmwlrnUbHGNyf6IWwpNX50Tzc9A==
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池的配置信息
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 6000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    filters: stat,wall,log4j
+    logSlowSql: true
+
+---
+spring:
+  profiles: 72craft-manage
+  datasource:
+    url: jdbc:mysql://172.16.1.11:3306/72craft_manage?useUnicode=true&characterEncoding=utf8
+    username: administrator
+    password: Tianshi@18
+    driverClassName: com.mysql.jdbc.Driver
+ #password: TQufFr15+nq3NWyN0LCHySSwAfna2Pj6IqOpZs9N1ZeU+qUSQVi/sZNzufLZmwlrnUbHGNyf6IWwpNX50Tzc9A==
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池的配置信息
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 6000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    filters: stat,wall,log4j
+    logSlowSql: true
+
+---
+spring:
+  profiles: home
+  datasource:
+    url: jdbc:mysql://localhost:3306/72craft_stage?useUnicode=true&characterEncoding=utf8
+    username: earthling
+    password: 4wsgfxt87oguykjo7ilgubjhydthcg
+ #password: TQufFr15+nq3NWyN0LCHySSwAfna2Pj6IqOpZs9N1ZeU+qUSQVi/sZNzufLZmwlrnUbHGNyf6IWwpNX50Tzc9A==
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池的配置信息
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 6000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    filters: stat,wall,log4j
+    logSlowSql: true
+
+---
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://172.16.9.214:3306/72craft_stage?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: zjw
+    password: 123456
+ #password: TQufFr15+nq3NWyN0LCHySSwAfna2Pj6IqOpZs9N1ZeU+qUSQVi/sZNzufLZmwlrnUbHGNyf6IWwpNX50Tzc9A==
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池的配置信息
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 6000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    filters: stat,wall,log4j
+    logSlowSql: true
+---
+spring:
+  profiles: 46local
+  datasource:
+    url: jdbc:mysql://172.16.1.46:3306/72craft?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: qwerty1234
+ #password: TQufFr15+nq3NWyN0LCHySSwAfna2Pj6IqOpZs9N1ZeU+qUSQVi/sZNzufLZmwlrnUbHGNyf6IWwpNX50Tzc9A==
+    driverClassName: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池的配置信息
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 6000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    filters: stat,wall,log4j
+    logSlowSql: true

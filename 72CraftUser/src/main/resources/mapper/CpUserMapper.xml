@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highrock.mapper.CpUserMapper">
+	<update id="updateCpUserById" parameterType="com.highrock.model.CpUser">
+		UPDATE  cp_user
+		<set>
+			<if test="email!=null">email=#{email},</if>
+			<if test="password!=null">password=#{password},</if>
+			<if test="firstName!=null">first_name=#{firstName},</if>
+			<if test="lastName!=null">last_name=#{lastName},</if>
+			<if test="phone!=null">phone=#{phone},</if>
+			<if test="createTime!=null">create_time=#{createTime},</if>
+			<if test="type!=null">type=#{type},</if>
+			<if test="lockTime!=null">lock_time=#{lockTime},</if>
+			<if test="errorTimes!=null">error_times=#{errorTimes},</if>
+			<if test="status!=null">status=#{status},</if>
+			<if test="storeNo!=null">store_no=#{storeNo},</if>
+
+		</set>
+		WHERE id=#{id}
+	</update>
+
+
+</mapper>
